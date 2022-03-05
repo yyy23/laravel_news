@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model  //Modelを引き継いだPossクラスを使えばpostsテーブルの中の２つ空を扱うことができる
+class Post extends Model  //Modelを継承してpostクラス作成
 
 {
     // 投稿はたくさんのコメントを持つ
-    // public function Comments(){ 
+
+    public function comments()
+    { 
 		
-	// 	return $this->hasMany('Comment', 'post_id');
-	// }
+       return $this ->hasMany("App\Models\Comment");
+	}
 
 
     //テーブル名

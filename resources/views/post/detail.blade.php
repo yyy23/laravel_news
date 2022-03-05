@@ -15,9 +15,9 @@
 
 <body>
 
-<!--  記事の表示  -->
-  <p><h2>{{ $post ->title }}</h2></p>
-  <p>{{ $post ->article }}</p>
+<!--  投稿の表示  -->
+  <p><h2>{{ $post ->title }}</h2></p>  <!-- タイトル -->
+  <p>{{ $post ->article }}</p>          <!-- 記事 -->
   <hr>
 
 
@@ -29,7 +29,8 @@
     <input type= "submit" name= "send_comment" value= "コメント追加">  
   </form>
   <hr>  
-  @foreach ($comments as $comment )
+  <!-- コメントの表示-->
+  @foreach ($comments as $comment )  
     <p>{{ $comment ->comment }}</p>
 
 
@@ -42,7 +43,6 @@
     </form>  
   <hr>
   @endforeach
-  
-  
+
 </body>
 </html> 
