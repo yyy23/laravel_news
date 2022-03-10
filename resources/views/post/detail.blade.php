@@ -24,20 +24,20 @@
   <!-- コメント投稿 -->
   <form action= "" method= "POST"> 
   @csrf
-    <input type="hidden" name="post_id" value= "{{$post ->id}}">
-    <p>コメント<textarea name= "comment" cols= "20" rows= "3"></textarea></p><br>  <!--記事入力部分の作成-->
-    <input type= "submit" name= "send_comment" value= "コメント追加">  
+    <input type="hidden" name="post_id" value= "{{$post ->id}}">  <!-- {post_id}を隠して詳細画面に渡す -->
+    <p>コメント<textarea name= "comment" cols= "20" rows= "3"></textarea></p><br>  <!--コメント部分の作成-->
+    <input type= "submit" name= "send_comment" value= "コメント追加">    <!-- コメント追加ボタン -->
   </form>
   <hr>  
+
   <!-- コメントの表示-->
-  @foreach ($comments as $comment )  
+  @foreach ($comments as $comment )  <!-- foreachでコメント数の分だけ表示させる -->
     <p>{{ $comment ->comment }}</p>
 
-
   <!-- コメント削除ボタン  -->
-    <form action= "{{ route('comment.destroy' , $comment->id) }}" method="POST">
+    <form action= "{{ route('comment.destroy' , $comment->id) }}" method="POST">  <!-- {$comment_id}を渡して'comment.destroy'を処理する -->
       @csrf
-      <input type="hidden" name="id" value= "{{$post ->id}}">
+      <input type="hidden" name="id" value= "{{$post ->id}}"> <!-- {post_id}を隠して詳細画面に渡す -->
       <input type= "submit" name= "comment_delete" value= "削除">
       @method('DELETE')
     </form>  

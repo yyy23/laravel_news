@@ -8,8 +8,9 @@
 </head> 
 
 <header>
+  <!--TOP画面へのリンク-->
   <div class="nav-bar">
-  <a href="http://localhost/index.php">Laravel-News</a> <!--TOP画面へのリンク-->
+  <a href="http://localhost/index.php">Laravel-News</a> 
 </div>
 </header>
 
@@ -51,7 +52,7 @@
 
   <!-- 投稿内容の表示  -->
   <hr>
-  @if (count($posts) > 0)
+  @if (count($posts) > 0)   <!-- $postsがある場合、foreachで投稿数分を表示 -->
     @foreach ($posts as $post)
     <p><h2>{{ $post ->title }}</h2></p>
     <p>{{ $post->article }}</p>  
@@ -60,9 +61,8 @@
     @endforeach
   @endif
   
-  <script src="http://localhost/js/post.js"></script>
+  <!-- JavaScriptへのリンク -->
+  <script src="{{ asset('/js/post.js') }}"></script>  
 
 </body>
-
 </html>
-

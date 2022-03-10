@@ -1,6 +1,6 @@
-const form = document.getElementById('form');
-  
-  if(!!form) {
+const form = document.getElementById('form')
+
+  function check(){
 
     if(window.confirm('送信してよろしいですか？')){ // 確認ダイアログを表示
 

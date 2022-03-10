@@ -15,7 +15,8 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
   public function detail($id)  //投稿idを呼び出して詳細表示
     {
 
-      $post = Post::findOrFail($id);   //$postはPostモデルからIDがあれば表示、なければfalse
+      $post = Post::findOrFail($id);   // SELECT * FROM posts where id 
+
       $comments = Comment::where('post_id', '=', $id)  // SELECT * FROM posts where post_id = '$id'
                   ->orderBy('id', 'desc') ->get();  //$commentsはpost_idと$idが一致するものを降順で取得
 
@@ -30,16 +31,16 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
 
        /*   コメントの保存  */
 
-    public function store(Request $request)  //$requestを呼び出して保存
+    public function store(Request $request)  //Requetのデータは$requestとして呼び出して、DBへ保存
     {
 
-      $savedata = [  //保存するデータ
+      $savedata = [  //DBへ保存内容
         "post_id" => $request ->post_id,
         "comment" => $request ->comment,
       ];
       
-      $comment = new Comment;
-      $comment ->fill($savedata) ->save();
+      $comment = new Comment;   //新規コメント
+      $comment ->fill($savedata) ->save();  //保存内容を保存
     
       // post_idを渡して詳細ページへリダイレクト
       return redirect() ->route('post.detail' , [$savedata['post_id']]);
@@ -50,7 +51,7 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
 
     public function destroy($comment_id)   //$comment_idを呼び出して削除処理
     {
-      $comment = Comment::findOrFail($comment_id);  //$commentはCommentモデルからcomment_idがあれば表示、なければfalse
+      $comment = Comment::findOrFail($comment_id);   // DELETE * FROM comments where id = 〇〇
       $comment ->delete();  //コメント削除
       
       // dd($comment);
