@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>  
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scal=1.0"> <!--表示領域設定：端末画面の幅、初期ズーム倍率-->
+  <meta name="viewport" content="width=device-width,initial-scal=1"> <!--表示領域設定：端末画面の幅、初期ズーム倍率-->
 
   <title>Laravel-News</title>
 </head> 
@@ -18,7 +18,7 @@
   <h2>皆さんのトレンドニュースを教えてください★</h2>
 
 
-  <form action= "index.php" method= "POST" onsubmit= "return check()" >  <!--ファイル、methodの指定-->
+  <form action= "index.php" method= "POST" onsubmit= "check()" >  <!--ファイル、methodの指定-->
   @csrf
 
   <!--タイトル入力部分の作成-->
@@ -61,8 +61,8 @@
     @endforeach
   @endif
   
-  <!-- JavaScriptへのリンク -->
-  <script src="{{ asset('/js/post.js') }}"></script>  
+  <!-- JavaScriptファイル読み込み  assetメソッドがpublicまでパスを返してくれる -->
+  <script src="/resources/js/post.js"></script>  
 
 </body>
 </html>

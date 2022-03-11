@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\Comment;
+
 
 class PostController extends Controller  //Controllerを継承してpossControllerのクラス作成
 {
@@ -14,10 +14,13 @@ class PostController extends Controller  //Controllerを継承してpossControll
 
     public function index()
     {
-      
-      $posts = Post::orderBy('id', 'desc') ->get();  // SELECT * FROM posts orderby id desc
-    
+
+      $posts = Post::orderBy('id', 'desc') ->get();  //postsのデータを取得する段階で、commentsも取得
+
       return view("post.index", ["posts" => $posts] );  //$postsで受け取ったデータをpostsに渡してpost.indexに配列で渡したものをviewに返す
+
+      
+
     }
 
 

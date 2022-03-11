@@ -1,4 +1,3 @@
-const form = document.getElementById('form')
 
   function check(){
 
@@ -11,4 +10,5 @@ const form = document.getElementById('form')
         window.alert('キャンセルされました'); // 警告ダイアログを表示
         return false; // 送信を中止
     }
+  
   }

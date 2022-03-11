@@ -12,24 +12,24 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
 
     /*  記事の詳細表示  */
 
-  public function detail($id)  //投稿idを呼び出して詳細表示
+    public function detail($id)  //indexのidを呼び出して詳細表示
     {
 
-      $post = Post::findOrFail($id);   // SELECT * FROM posts where id 
+      $post = Post::findOrFail($id);  //$postはPostモデルからIDがあれば表示、なければfalse
+      $comments = Post::find($id) ->comments() ->orderBy('id', 'desc') ->get();  //$commentsはPostモデルからIDを見つけて降順で取得
 
-      $comments = Comment::where('post_id', '=', $id)  // SELECT * FROM posts where post_id = '$id'
-                  ->orderBy('id', 'desc') ->get();  //$commentsはpost_idと$idが一致するものを降順で取得
-
-        if(!$post) {  //IDが取得できないときは一覧画面へリダイレクト
+      if(!$post) {  //IDが取得できないときは一覧画面へリダイレクト
       
-        return redirect("post.detail");  // "post.detail" (詳細ページ)にレダイレクト
+        return redirect("post.detail");  // "post.detail"ページに転送
       }
 
       return view("post.detail" ,["post" => $post, "comments" =>$comments] );  // 保存した値を(post,comments)を連想配列として"post.detail"ページに表示
     }
 
 
-       /*   コメントの保存  */
+    //コメント追加、削除はPostモデルいらない、どうやってcommnetモデルを呼び出すか
+
+       /*   コメントの保存  */  
 
     public function store(Request $request)  //Requetのデータは$requestとして呼び出して、DBへ保存
     {
@@ -54,7 +54,6 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
       $comment = Comment::findOrFail($comment_id);   // DELETE * FROM comments where id = 〇〇
       $comment ->delete();  //コメント削除
       
-      // dd($comment);
  
       //post_idを渡して詳細ページへリダイレクト
       return redirect() ->route('post.detail' , [$comment['post_id']] );
