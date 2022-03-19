@@ -20,7 +20,7 @@ class CommentController extends Controller  //COntrollerを継承してCommentCo
 
       if(!$post) {  //IDが取得できないときは一覧画面へリダイレクト
       
-        return redirect("post.detail");  // "post.detail"ページに転送
+        return redirect() ->route('post.detail');  // "post.detail"ページに転送
       }
 
       return view("post.detail" ,["post" => $post, "comments" =>$comments] );  // 保存した値を(post,comments)を連想配列として"post.detail"ページに表示

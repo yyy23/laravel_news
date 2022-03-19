@@ -10,7 +10,7 @@
 <header>
   <!--TOP画面へのリンク-->
   <div class="nav-bar">
-  <a href="http://localhost/index.php">Laravel-News</a> 
+  <a href= "{{ route('post.index') }}">Laravel-News</a> 
 </div>
 </header>
 
@@ -18,7 +18,7 @@
   <h2>皆さんのトレンドニュースを教えてください★</h2>
 
 
-  <form action= "index.php" method= "POST" onsubmit= "check()" >  <!--ファイル、methodの指定-->
+  <form method= "POST"  action= "{{ route('post.store') }}"  onsubmit= "check()" >  <!--ファイル、methodの指定-->
   @csrf
 
   <!--タイトル入力部分の作成-->
@@ -50,18 +50,19 @@
       <input type= "submit" name= "send_submit" value= "投稿"></p>  
   </form>
 
+
   <!-- 投稿内容の表示  -->
   <hr>
   @if (count($posts) > 0)   <!-- $postsがある場合、foreachで投稿数分を表示 -->
     @foreach ($posts as $post)
     <p><h2>{{ $post ->title }}</h2></p>
     <p>{{ $post->article }}</p>  
-    <a href="{{ route('post.detail', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--コメントページへのリンク作成 -->
+    <a href="{{ route('post.detail', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--詳細ページへのリンク作成 -->
     <hr>
     @endforeach
   @endif
   
-  <!-- JavaScriptファイル読み込み  assetメソッドがpublicまでパスを返してくれる -->
+  <!-- JavaScriptファイル読み込み  -->
   <script src="/resources/js/post.js"></script>  
 
 </body>

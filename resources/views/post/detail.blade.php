@@ -9,7 +9,7 @@
 
 <header>
   <div class="nav-bar">
-  <a href="http://localhost/index.php">Laravel-News</a> <!--TOP画面へのリンク-->
+  <a href= "{{ route('post.index') }}"> Laravel-News</a> <!--TOP画面へのリンク-->
  </div>
 </header> 
 
@@ -22,7 +22,7 @@
 
 
   <!-- コメント投稿 -->
-  <form action= "" method= "POST"> 
+  <form method= "POST" action= "{{ route('comment.store' , $post ->id) }}" > 
   @csrf
     <input type="hidden" name="post_id" value= "{{$post ->id}}">  <!-- {post_id}を隠して詳細画面に渡す -->
     <p>コメント<textarea name= "comment" cols= "20" rows= "3"></textarea></p><br>  <!--コメント部分の作成-->
@@ -35,7 +35,7 @@
     <p>{{ $comment ->comment }}</p>
 
   <!-- コメント削除ボタン  -->
-    <form action= "{{ route('comment.destroy' , $comment->id) }}" method="POST">  <!-- {$comment_id}を渡して'comment.destroy'を処理する -->
+    <form method="POST" action= "{{ route('comment.destroy' , $comment->id) }}">  <!-- {$comment_id}を渡して'comment.destroy'を処理する -->
       @csrf
       <input type="hidden" name="id" value= "{{$post ->id}}"> <!-- {post_id}を隠して詳細画面に渡す -->
       <input type= "submit" name= "comment_delete" value= "削除">

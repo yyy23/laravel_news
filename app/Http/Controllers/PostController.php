@@ -15,7 +15,7 @@ class PostController extends Controller  //Controllerを継承してpossControll
     public function index()
     {
 
-      $posts = Post::orderBy('id', 'desc') ->get();  //postsのデータを取得する段階で、commentsも取得
+      $posts = Post::orderBy('id', 'desc') ->get();  //postsのデータをID降順で取得
 
       return view("post.index", ["posts" => $posts] );  //$postsで受け取ったデータをpostsに渡してpost.indexに配列で渡したものをviewに返す
 
@@ -54,7 +54,7 @@ class PostController extends Controller  //Controllerを継承してpossControll
         $post = new Post;    //新規投稿
         $post ->fill($savedata) ->save();  //内容を保存
       
-      return redirect("/");   //投稿一覧へリダイレクト
+      return redirect() ->route('post.index');   //投稿一覧へリダイレクト
       
     }
     
