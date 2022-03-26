@@ -20,11 +20,11 @@ Route::get('/', "PostController@index") ->name("post.index");
 Route::post('/', "PostController@store") ->name("post.store");  
 
 //投稿記事IDでアクセスされたら、CommentControllerで'post.detail'という名前の'detail'処理が実行され、記事の詳細ページを表示
-Route::get('detail/{id}', "CommentController@detail") ->name("post.detail");  
+Route::get('/{id}', "CommentController@detail") ->name("post.detail");  
 
 //投稿記事IDでアクセスされたら、CommentControllerで'comment.store'という名前の'store'処理が実行され、コメントがデータベースに保存
-Route::post('detail/{id}', "CommentController@store")  ->name("comment.store");  
+Route::post('/{id}', "CommentController@store")  ->name("comment.store");  
 
 //投稿記事IDでアクセスされたら、CommentControllerで'comment.destroy'という名前の'destroy'処理が実行され、対象コメントのみ削除
-Route::delete('detail/{id}', "CommentController@destroy") ->name("comment.destroy");  
+Route::delete('/{id}', "CommentController@destroy") ->name("comment.destroy");  
 
