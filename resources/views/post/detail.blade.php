@@ -9,7 +9,7 @@
 
 <header>
   <div class="nav-bar">
-  <a href= "http://ec2-18-181-79-167.ap-northeast-1.compute.amazonaws.com/"> Laravel-News</a> <!--TOP画面へのリンク-->
+  <a href= "http://ec2-18-181-79-167.ap-northeast-1.compute.amazonaws.com"> Laravel-News</a> <!--TOP画面へのリンク-->
  </div>
 </header> 
 
