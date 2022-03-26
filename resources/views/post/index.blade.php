@@ -18,7 +18,7 @@
   <h2>皆さんのトレンドニュースを教えてください★</h2>
 
 
-  <form method= "POST"  action= "{{ route('post.store') }}"  onsubmit= "check()" >  <!--ファイル、methodの指定-->
+  <form method= "POST"  action= "{{ route('post.store' , $post ->id) }}"  onsubmit= "check()" >  <!--ファイル、methodの指定-->
   @csrf
 
   <!--タイトル入力部分の作成-->
