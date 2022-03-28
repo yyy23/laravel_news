@@ -17,7 +17,7 @@ class PostController extends Controller  //Controllerを継承してpossControll
 
       $posts = Post::orderBy('id', 'desc') ->get();  //postsのデータをID降順で取得
 
-      return view("index", ["posts" => $posts] );  //$postsで受け取ったデータをpostsに渡してindex.blade.phpに配列で渡したものをviewに返す
+      return view("post.index", ["posts" => $posts] );  //$postsで受け取ったデータをpostsに渡してindex.blade.phpに配列で渡したものをviewに返す
 
       
 
