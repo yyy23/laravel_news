@@ -57,7 +57,7 @@
     @foreach ($posts as $post)
     <p><h2>{{ $post ->title }}</h2></p>
     <p>{{ $post->article }}</p>  
-    <a href="{{ r', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--詳細ページへのリンク作成 -->
+    <a href="{{ route('post.detail', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--詳細ページへのリンク作成 -->
     <hr>
     @endforeach
   @endif
