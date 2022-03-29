@@ -9,7 +9,7 @@
 
 <header>
   <div class="nav-bar">
-  <a href= "http://ec2-18-181-79-167.ap-northeast-1.compute.amazonaws.com"> Laravel-News</a> <!--TOP画面へのリンク-->
+  <a href= "{{route('post.index') }}"> Laravel-News</a> <!--TOP画面へのリンク-->
  </div>
 </header> 
 
@@ -22,7 +22,7 @@
 
 
   <!-- コメント投稿 -->
-  <form method= "POST" action= "{{ route('comment.store') }}" > 
+  <form method= "POST" action= "{{ route('comment.store' , $post ->id) }}" > 
   @csrf
     <input type="hidden" name="post_id" value= "{{$post ->id}}">  <!-- {post_id}を隠して詳細画面に渡す -->
     <p>コメント<textarea name= "comment" cols= "20" rows= "3"></textarea></p><br>  <!--コメント部分の作成-->
