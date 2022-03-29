@@ -2,14 +2,15 @@
 <html lang="ja">
 <head>  
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scal=1.0"> <!--表示領域設定：端末画面の幅、初期ズーム倍率-->
+  <meta name="viewport" content="width=device-width,initial-scal=1"> <!--表示領域設定：端末画面の幅、初期ズーム倍率-->
 
   <title>Laravel-News</title>
 </head> 
 
 <header>
+  <!--TOP画面へのリンク-->
   <div class="nav-bar">
-  <a href="http://localhost/index.php">Laravel-News</a> <!--TOP画面へのリンク-->
+  <a href= "{{route('post.index') }}">Laravel-News</a> 
 </div>
 </header>
 
@@ -17,7 +18,7 @@
   <h2>皆さんのトレンドニュースを教えてください★</h2>
 
 
-  <form action= "index.php" method= "POST" onsubmit= "return check()" >  <!--ファイル、methodの指定-->
+  <form method= "POST"  action= "{{ route('post.store') }}"  onsubmit= "check()" >  <!--ファイル、methodの指定-->
   @csrf
 
   <!--タイトル入力部分の作成-->
@@ -49,33 +50,20 @@
       <input type= "submit" name= "send_submit" value= "投稿"></p>  
   </form>
 
+
   <!-- 投稿内容の表示  -->
   <hr>
-  @if (count($posts) > 0)
+  @if (count($posts) > 0)   <!-- $postsがある場合、foreachで投稿数分を表示 -->
     @foreach ($posts as $post)
     <p><h2>{{ $post ->title }}</h2></p>
     <p>{{ $post->article }}</p>  
-    <a href="{{ route('post.detail', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--コメントページへのリンク作成 -->
+    <a href="{{ route('post.detail', $post ->id) }}"> 記事全文・コメントを読む</a>  <!--詳細ページへのリンク作成 -->
     <hr>
     @endforeach
   @endif
   
-  <script>
-  function check(){
-
-    if(window.confirm('送信してよろしいですか？')){ // 確認ダイアログを表示
-
-        return true; // 「OK」時は送信を実行
-
-    }else{ // 「キャンセル」時の処理
-
-        window.alert('キャンセルされました'); // 警告ダイアログを表示
-        return false; // 送信を中止
-    }
-  }
-  </script>
+  <!-- JavaScriptファイル読み込み  -->
+  <script src="/resources/js/post.js"></script>  
 
 </body>
-
 </html>
-
